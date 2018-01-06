@@ -20,7 +20,6 @@ describe('Message', () => {
             return container;
         },
         prefixCls: 'uxcore-message',
-        multipleInstance: true
     })
 
     it('should work with multi instance', done => {
@@ -45,19 +44,30 @@ describe('Message', () => {
             onClose: () => {
                 clearInterval(timer);
                 timer = null;
-                
             }
         });
         msg();
         setTimeout(() => { 
             expect(timer).to.be(null);
+            done();
         }, 1000);
-        done();
     })
 
     it('show the different msg by the type', done => {
-        let typeArr = ['info', 'success', 'error', 'loading', 'nw_loading'];
-        let iconArr = ['uxcore-icon uxicon-tishi-full', 'uxcore-icon uxicon-chenggong-full', 'uxcore-icon uxicon-biaodanlei-tongyongqingchu', 'uxcore-icon uxicon-loading-icon-round', 'kuma-loading'];
+        let typeArr = [
+            'info', 
+            'success', 
+            'error', 
+            'loading', 
+            'nw_loading'
+        ];
+        let iconArr = [
+            'uxcore-icon uxicon-tishi-full', 
+            'uxcore-icon uxicon-chenggong-full', 
+            'uxcore-icon uxicon-biaodanlei-tongyongqingchu', 
+            'uxcore-icon uxicon-loading-icon-round', 
+            'kuma-loading'
+        ];
         typeArr.forEach(type => {
             Message[type]({
                 content: `this is a ${type} msg`,
@@ -85,8 +95,8 @@ describe('Message', () => {
         setTimeout(() => {
             isDie = instance === null;
             expect(isExist && isDie).to.be(true);
+            done();
         }, 5000);
-        done();
     })
 
     it('should apply the custom prefixCls', done => {
